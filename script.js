@@ -4,7 +4,7 @@ setTimeout( function() {
   const sketchPage = document.querySelector('.main-container');
   loadingPage.remove();
   sketchPage.style.display = 'flex';
-}, 7000);
+}, 9000);
 
 
 const btn = document.querySelectorAll('button');

@@ -23,10 +23,10 @@ const lightModeToggle = document.querySelector("[alt='dark-mode-icon']");
 const isDarkMode = localStorage.getItem('darkMode') === 'true';
 
 // Apply dark mode if it's enabled
-if (isDarkMode) {
-  toggleDarkMode();
-} else {
+if (!isDarkMode) {
   toggleLightMode();
+} else {
+  toggleDarkMode();
 }
 
 // Dark mode func

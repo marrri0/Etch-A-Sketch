@@ -1,0 +1,151 @@
+@font-face {
+    font-family: romulus;
+    src: url(./font/Priestacy.otf);
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    background: url(./img/white-pattern-bg.avif);
+}
+
+img[alt='dark-mode-icon'] {
+    display: none;
+}
+
+button {
+    background: url(./img/white-pattern-bg.avif);
+    color: #696969;
+    display: block;
+    margin: 0 auto;
+    margin-top: 10px;
+    width: 150px;
+    height: 50px;
+    border-radius: 10px;
+    border: none;
+    font-weight: 900;
+    font-family: romulus;
+    box-shadow: 0 0 16px black;
+}
+
+button:focus {
+    transition: 0.3s;
+    box-shadow: 0 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    cursor: pointer;
+    border-radius: 10px;
+}
+  
+input[type="range"]::-webkit-slider-runnable-track {
+    -webkit-appearance: none !important;
+    background: url(./img/white-pattern-bg.avif);
+    border-radius: 10px;
+    box-shadow: 0 0 10px 5px black;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none !important;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: url(./img/inverted-black-bg.png);
+}
+
+.main-container {
+    display: none;
+    justify-content: space-around;
+    align-self: center;
+    flex-wrap: wrap-reverse;
+    width: 100%;
+    gap: 1rem;
+    padding-top: 15px;
+}
+
+.sketch-panel {
+    background-color: rgba(255, 255, 255, 0.2);
+    display: grid;
+    gap: 1px 1px;
+    width: 550px;
+    height: 550px;
+    border-radius: 2%;
+    padding: 10px;
+    box-shadow: 0 0 35px #000;
+    animation: slide-left-right 1s ease-in-out;
+}
+
+.grid-squares {
+    background-color: #fff;
+    height: auto;
+    width: auto;
+    border: 1px solid gray;
+    border-radius: 3%;
+}
+
+.settings {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 1em;
+    padding: 15px;
+    width: 250px;
+    border-radius: 10px;
+    height: fit-content;
+    align-self: center;
+    justify-self: center;
+    /* background: url(./img/inverted-black-bg.png); */
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 35px black;
+    animation: slide-right-left 2s ease-in-out;
+}
+
+.value-para {
+    background: url(./img/white-pattern-bg.avif);
+    color: rgb(105, 105, 105);
+    font-size: 30px;
+    font-family: icy-font;
+    font-weight: 600;
+    border:none;
+    border-radius: 8px;
+    box-shadow: 0 0 15px black;
+    width: 150px;
+    margin: 60px 0 0 0;
+    text-align: center;
+}
+
+#color-pick {
+    background: url(./img/white-pattern-bg.avif);
+    border-radius: 5px;
+}
+
+@keyframes slide-left-right {
+    0% {
+        transform: translate(0);
+        opacity: 0%;
+    }
+    50% {
+        transform: translate(-8px);
+        opacity: 0%;
+    }
+    100% {
+        transform: translate(0);
+        opacity: 100%;
+    }
+  }
+
+  @keyframes slide-right-left {
+    0% {
+        opacity: 0%;
+    }
+    50% {
+        opacity: 0%;
+    }
+    100% {
+        opacity: 100%;
+    }
+  }

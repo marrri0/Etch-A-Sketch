@@ -15,6 +15,7 @@ const randomRGB = document.querySelector('.randomRGB');
 const colorPick = document.querySelector('#color-pick');
 const resetBtn = document.querySelector('.clr');
 const eraser = document.querySelector('.eraser');
+const grd = document.querySelector('.grd');
 const settingPanel = document.querySelector('.settings');
 const darkModeToggle = document.querySelector("[alt='light-mode-icon']");
 const lightModeToggle = document.querySelector("[alt='dark-mode-icon']");
@@ -27,7 +28,7 @@ if (!isDarkMode) {
   toggleLightMode();
 } else {
   toggleDarkMode();
-}
+};
 
 // Dark mode func
 darkModeToggle.addEventListener('click', toggleLightMode);
@@ -79,18 +80,24 @@ function createSquares() {
         const squares = document.createElement('div');
         squares.style.transition = '0.2s'
         mainDiv.appendChild(squares);
-        squares.classList.add('grid-squares')
+        // squares.classList.toggle('grid-squares')
+        squares.classList.toggle('removed-grid-squares')
 
         squares.addEventListener('mouseover', (e) => {
             e.target.style.backgroundColor = colorPick.value;
         });
+
+        grd.addEventListener('click', function () {
+          squares.classList.toggle('grid-squares')
+          squares.classList.toggle('removed-grid-squares')
+        });
     }
-}
+};
 
 function setGridSize(size) {
   para.textContent = `${size} x ${size}`;
   createSquares(size);
-}
+};
 
 slider.addEventListener('input', function (e) {
   const value = e.target.value;
@@ -98,12 +105,12 @@ slider.addEventListener('input', function (e) {
 });
 
 function getRandomRGB() {
-  const a = Math.round(Math.random() * 255);
-  const b = Math.round(Math.random() * 255);
-  const c = Math.round(Math.random() * 255);
+  const red = Math.round(Math.random() * 255);
+  const green = Math.round(Math.random() * 255);
+  const blue = Math.round(Math.random() * 255);
 
-  return `rgb(${a}, ${b}, ${c})`;
-}
+  return `rgb(${red}, ${green}, ${blue})`;
+};
 
 randomRGB.addEventListener('click', function () {
   const value = slider.value;
@@ -148,8 +155,8 @@ resetBtn.addEventListener('click', function () {
 });
 
 function initialize() {
-  const initialSize = 10;
+  const initialSize = 20;
   setGridSize(initialSize);
-}
+};
 
 initialize();

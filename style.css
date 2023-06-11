@@ -18,9 +18,8 @@ button {
     color: #696969;
     display: block;
     margin: 0 auto;
-    margin-top: 10px;
-    width: 150px;
-    height: 50px;
+    width: 125px;
+    height: 40px;
     border-radius: 10px;
     border: none;
     font-weight: 900;
@@ -69,7 +68,6 @@ input[type="range"]::-webkit-slider-thumb {
 .sketch-panel {
     background-color: rgba(255, 255, 255, 0.2);
     display: grid;
-    gap: 1px 1px;
     width: 550px;
     height: 550px;
     border-radius: 2%;
@@ -84,6 +82,13 @@ input[type="range"]::-webkit-slider-thumb {
     width: auto;
     border: 1px solid gray;
     border-radius: 3%;
+    margin: 1px;
+}
+
+.removed-grid-squares {
+    background-color: #fff;
+    height: auto;
+    width: auto;
 }
 
 .settings {
@@ -98,7 +103,6 @@ input[type="range"]::-webkit-slider-thumb {
     height: fit-content;
     align-self: center;
     justify-self: center;
-    /* background: url(./img/inverted-black-bg.png); */
     background: rgba(255, 255, 255, 0.2);
     box-shadow: 0 0 35px black;
     animation: slide-right-left 2s ease-in-out;

@@ -68,49 +68,48 @@ function toggleLightMode() {
   localStorage.setItem('darkMode', 'false');
 };
 
-let isMouseDown = false; // flag to track mouse status
+let isMouseDown = false; // Flag to track mouse state
 
 // initializing sketch func
 function createSquares() {
-    sqValue = slider.value
-    mainDiv.innerHTML = '';
-    mainDiv.style.gridTemplateColumns = `repeat(${sqValue}, 1fr)`;
-    mainDiv.style.gridTemplateRows = `repeat(${sqValue}, 1fr)`;
+  sqValue = slider.value;
+  mainDiv.innerHTML = '';
+  mainDiv.style.gridTemplateColumns = `repeat(${sqValue}, 1fr)`;
+  mainDiv.style.gridTemplateRows = `repeat(${sqValue}, 1fr)`;
 
-    for (let i = 0; i < sqValue * sqValue; i++) {
-        const squares = document.createElement('div');
-        squares.style.transition = '0.2s'
-        mainDiv.appendChild(squares);
-        squares.classList.toggle('removed-grid-squares');
+  for (let i = 0; i < sqValue * sqValue; i++) {
+    const squares = document.createElement('div');
+    squares.style.transition = '0.2s';
+    mainDiv.appendChild(squares);
+    squares.classList.toggle('removed-grid-squares');
 
-        squares.addEventListener('mousedown', () => {
-          isMouseDown = true;
-        });
+    squares.addEventListener('mousedown', () => {
+      isMouseDown = true;
+    });
 
-        squares.addEventListener('mouseup', () => {
-          isMouseDown = false;
-        });
+    squares.addEventListener('mouseup', () => {
+      isMouseDown = false;
+    });
 
+    squares.addEventListener('mousemove', (e) => {
+      if (isMouseDown) {
+        e.target.style.backgroundColor = colorPick.value;
+      }
+    });
 
-        squares.addEventListener('mousemove', (e) => {
-          if (isMouseDown) {
-            e.target.style.backgroundColor = colorPick.value;
-          }
-        });
-
-        grd.addEventListener('click', function () {
-          squares.classList.toggle('grid-squares')
-          squares.classList.toggle('removed-grid-squares')
-        });
-    }
-};
+    grd.addEventListener('click', function() {
+      squares.classList.toggle('grid-squares');
+      squares.classList.toggle('removed-grid-squares');
+    });
+  }
+}
 
 function setGridSize(size) {
   para.textContent = `${size} x ${size}`;
   createSquares(size);
-};
+}
 
-slider.addEventListener('input', function (e) {
+slider.addEventListener('input', function(e) {
   const value = e.target.value;
   setGridSize(value);
 });
@@ -121,53 +120,50 @@ function getRandomRGB() {
   const blue = Math.round(Math.random() * 255);
 
   return `rgb(${red}, ${green}, ${blue})`;
-};
+}
 
-randomRGB.addEventListener('click', function () {
+randomRGB.addEventListener('click', function() {
   const value = slider.value;
   const child = mainDiv.children;
 
   for (let i = 0; i < value * value; i++) {
-    child[i].addEventListener('mouseover', function (e) {
+    child[i].addEventListener('mousemove', function(e) {
       if (isMouseDown) {
         e.target.style.backgroundColor = getRandomRGB();
       }
     });
-    child[i].addEventListener('mouseup', () => {
+        child[i].addEventListener('mouseup', () => {
       isMouseDown = false;
     });
   }
 });
 
-colorPick.addEventListener('click', function () {
+colorPick.addEventListener('click', function() {
   const value = slider.value;
   const child = mainDiv.children;
-  
+
   for (let i = 0; i < value * value; i++) {
-    child[i].addEventListener('mouseover', function (e) {
+    child[i].addEventListener('mousemove', function(e) {
       if (isMouseDown) {
         e.target.style.backgroundColor = colorPick.value;
       }
     });
-    child[i].addEventListener('mouseup', () => {
-      isMouseDown = false;
-    });
   }
 });
 
-eraser.addEventListener('click', function () {
+eraser.addEventListener('click', function() {
   const value = slider.value;
   const child = mainDiv.children;
-  
+
   for (let i = 0; i < value * value; i++) {
-    child[i].addEventListener('mouseover', function (e) {
+    child[i].addEventListener('mousemove', function(e) {
       if (isMouseDown) {
         e.target.style.backgroundColor = '#fff';
       }
     });
-    child[i].addEventListener('mouseup', () => {
+        child[i].addEventListener('mouseup', () => {
       isMouseDown = false;
-    })
+    });
   }
 });
 

@@ -68,6 +68,7 @@ function toggleLightMode() {
   localStorage.setItem('darkMode', 'false');
 };
 
+let isMouseDown = false; // flag to track mouse status
 
 // initializing sketch func
 function createSquares() {
@@ -80,11 +81,21 @@ function createSquares() {
         const squares = document.createElement('div');
         squares.style.transition = '0.2s'
         mainDiv.appendChild(squares);
-        // squares.classList.toggle('grid-squares')
-        squares.classList.toggle('removed-grid-squares')
+        squares.classList.toggle('removed-grid-squares');
 
-        squares.addEventListener('mouseover', (e) => {
+        squares.addEventListener('mousedown', () => {
+          isMouseDown = true;
+        });
+
+        squares.addEventListener('mouseup', () => {
+          isMouseDown = false;
+        });
+
+
+        squares.addEventListener('mousemove', (e) => {
+          if (isMouseDown) {
             e.target.style.backgroundColor = colorPick.value;
+          }
         });
 
         grd.addEventListener('click', function () {
@@ -118,7 +129,12 @@ randomRGB.addEventListener('click', function () {
 
   for (let i = 0; i < value * value; i++) {
     child[i].addEventListener('mouseover', function (e) {
-      e.target.style.backgroundColor = getRandomRGB();
+      if (isMouseDown) {
+        e.target.style.backgroundColor = getRandomRGB();
+      }
+    });
+    child[i].addEventListener('mouseup', () => {
+      isMouseDown = false;
     });
   }
 });
@@ -129,7 +145,12 @@ colorPick.addEventListener('click', function () {
   
   for (let i = 0; i < value * value; i++) {
     child[i].addEventListener('mouseover', function (e) {
-      e.target.style.backgroundColor = colorPick.value;
+      if (isMouseDown) {
+        e.target.style.backgroundColor = colorPick.value;
+      }
+    });
+    child[i].addEventListener('mouseup', () => {
+      isMouseDown = false;
     });
   }
 });
@@ -140,8 +161,13 @@ eraser.addEventListener('click', function () {
   
   for (let i = 0; i < value * value; i++) {
     child[i].addEventListener('mouseover', function (e) {
-      e.target.style.backgroundColor = '#fff';
+      if (isMouseDown) {
+        e.target.style.backgroundColor = '#fff';
+      }
     });
+    child[i].addEventListener('mouseup', () => {
+      isMouseDown = false;
+    })
   }
 });
 
